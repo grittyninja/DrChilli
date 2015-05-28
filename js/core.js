@@ -24,10 +24,24 @@ function getMinQ(arrQ){
 	temp = []
 	for(i=1;i<Pivot.length;i+=1){
 		for(j=0;j<Pivot[i][1].length;j+=1){
-			console.log(Pivot[i][1][j][0])
+			temp.push(Pivot[i][1][j][0])
 		}
 	}
-	return temp
+	var counts = {};
+	temp.forEach(function(x) { counts[x] = (counts[x] || 0)+1; });
+	arrQOnly = {}
+	for(i=0;i<arrQ.length;i+=1){
+		arrQOnly[arrQ[i]] = counts[arrQ[i]]
+	}
+	min = 99
+	Object.keys(arrQOnly).forEach(function(key) {
+   		if(arrQOnly[key]<min)min=arrQOnly[key]
+	});
+	minQ = []
+	Object.keys(arrQOnly).forEach(function(key) {
+   		if(arrQOnly[key]==min)minQ.push(key)
+	});
+	return minQ
 }
 var Con = null
 var arrH = "start"
@@ -57,16 +71,51 @@ var Wt = 	{
 }
 // IF Q == NULL -> Conclusion
 // IF H.length == 1 -> Conclusion
-function getQ(arrQ){
+function getQ(){
+	temp = null
 	if(arrQ[0] in Rule){
 		temp = arrQ[0]
 		arrQ.shift()
 		return temp
 	}
 	else{
-		arrTemp = getArrMin(arrQ)
+		arrTemp = getMinQ(arrQ)
+		if(arrTemp.length>1){
+			temp = checkEigen(arrTemp) // IF length target > 1
+		}
+		else{
+			temp = arrTemp
+		}
+		// Remove Q
+		if(temp==arrQ[0]) arrQ.shift()
+		else{rmArrQ(temp)} 
+		console.log(temp)
+		return temp
 	}
 }
+
+function rmArrQ(Q){
+	index = arrQ.indexOf(Q);
+	arrQ.splice(index, 1);
+}
+
+function checkEigen(Q){
+	temp = []
+	for(h=0;h<Q.length;h+=1){
+		temp.push(0)
+		for(i=1;i<Pivot.length;i+=1){
+			for(j=0;j<Pivot[i][1].length;j+=1){
+				if(Pivot[i][1][j][0]==Q[h]){
+					temp[temp.length-1]+=Pivot[i][1][j][1]
+				}
+			}
+		}
+	}
+	max  = Math.max.apply(Math, temp);
+	index = temp.indexOf(max)
+	return Q[index]
+}
+
 function isTrue(Q){
 	if(Q in Rule){
 		Con = Rule[Q]
