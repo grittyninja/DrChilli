@@ -1,4 +1,5 @@
 Q = Cause
 H = Pests
 
-- First Mapping 
+- Specify H that are dependent to Q (Identification Key).
+- Specify eigen value from Q to H.

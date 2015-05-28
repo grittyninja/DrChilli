@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="css/style.css">
+       <link rel="stylesheet" href="css/onsenui.css">
+    <script src="js/function.js"></script>
+    <script src="js/database.js"></script>
+    <script>
+        ons.bootstrap();
+        ons.disableAutoStatusBarFill();
+    </script>
+   
+</head>
+<body>
+    <ons-navigator title="Navigator" var="myNavigator">
+  <ons-page style="background: url('images/many-fruits-bg.jpg') no-repeat fixed center">
+    <center>
+    <div style="margin-top:30px">
+        <img src="images/tap2fresh-LOGO.png" height="auto" width="200px" />
+    </div>
+    <div style="margin-top:30px">        
+        <button class="button--cta menu-button" onclick="myNavigator.pushPage('soalbuah0', { animation : 'slide' } )">Tebak Buah</button>
+        <button class="button--cta menu-button" onclick="myNavigator.pushPage('soalsayur0', { animation : 'slide' } )">Tebak Sayur</button>
+    </div>
+        <!-- <ons-button class="about" style="margin-top:130px; text-align:center; border-color:#dddddd; color:#dddddd" onclick="ons.notification.alert({message: 'Tap2Fresh v1.0 Made by IPB Dev: 1)Muhammad Zulfikar G64120062 2)Herdian Nugraha G64120042 3)Muhammad Nuh Yahya G64120018 4)Kiagus Abdul F. G64120040'});" modifier="light">About</ons-button> -->   
+    <ons-button class="about" onclick="window.location='about.html'" style="margin-top:90px; text-align:center; border-color:#dddddd; color:#dddddd" modifier="light">About</ons-button><br/> <br/>
+    <a href="bugs.html" style="text-align:center; line-height:1.7em; font-size:90%; color:#dddddd">Bugs Report</a>
+    </center>
+     
+  </ons-page>
+</ons-navigator>
+
+<!-- start of soal nol -->
+<ons-template id="soalbuah0">
+  <ons-page modifier="shop-details">
+ <script>
+document.write('<div class="card" style="background-image : url(images/edit/'+buah[answerBuah[0]].nama+'.jpg);"></div>');
+ </script>
+        <center>
+        <p style="margin-top:15px;">Buah apakah ini?</p>
+        </center>
+    </div>    
+    <center>
+    <script>
+        n = [0,1,2,3,4,5,6,7,8,9];
+        n.splice(answerBuah[0],1);
+        n = getRandom(n,3);
+        n.push(answerBuah[0]);
+        shuffle(n);
+    </script>
+    <form id="formbuah0">
+    <ons-list>
+        <ons-list-header>Pilih salah satu dari pilihan dibawah ini:</ons-list-header>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+          <script>
+              document.write('<input type="radio"  name="jwb" value='+n[0]+' onclick="return hideSalah(1);"/>');
+          </script>
+            
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+             <script>
+              document.write(buah[n[0]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+            <script>
+              document.write('<input type="radio"  name="jwb" value='+n[1]+' onclick="return hideSalah(1);"/>');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+            <script>
+              document.write(buah[n[1]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item">
+           <script>
+              document.write('<input type="radio"  name="jwb" value='+n[2]+' onclick="return hideSalah(1);"/>');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+            <script>
+              document.write(buah[n[2]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-list-item modifier="tappable">
+          <label class="radio-button radio-button--list-item" >
+            <script>
+              document.write('<input type="radio"  name="jwb" value='+n[3]+' onclick="return hideSalah(1);"/>');
+          </script>
+            <div class="radio-button__checkmark radio-button--list-item__checkmark"></div>
+           <script>
+              document.write(buah[n[3]].nama);
+          </script>
+          </label>
+        </ons-list-item>
+        <ons-button id="submit0" class="pilihan" modifier="large--cta" onclick="return cekJawaban(0);">Submit</ons-button>
+         <ons-button id="jaws0" style="display:none" class="pilihan" modifier="large--cta" onclick="myNavigator.pushPage('benar0', { animation : 'slide' } );">Lihat Detail ></ons-button>
+    </ons-list>
+
+    </form>
+    <div id="salah0">     
+    </div>
+    </center>
+    
+  </ons-page>
+</ons-template>
+</body>
+</html>
