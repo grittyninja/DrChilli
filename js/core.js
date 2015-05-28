@@ -77,69 +77,43 @@ function isTrue(Q){
 	else{
 		if(arrH == "start"){
 			arrH = getH(Q)
+			weight(arrH,Q) // Progress
+			arrQ = 
 		}
 		else{
-
+			arrTemp = getH(Q)
+			arrTemp = isect(arrTemp,arrH)
+			weight(arrH,Q)
 		}
 
 	}
 }
+
 // Get H which have relation to Q
 function getH(Q){
 	Dep = []
 	arrTemp = []
-	for(i=1;i<=8;i+=1){
-		arrTemp = Map[i][1]
-		if(arrTemp.indexOf(Q)!=-1){
-			Dep.push(Map[i][0])
+	for(i=1;i<Pivot.length;i+=1){
+		arrTemp = Pivot[i][1]
+		for(j=0;j<arrTemp.length;j+=1){
+			if(arrTemp[j][0]==Q){
+				Dep.push(Pivot[i][0])
+			}
 		}
+		
 	}
 	return Dep
 }
-
-// Get H Which Dependent to Q
-function getHD(Q){
-	H = []
-	for(i=1;i<=8;i+=1){
-		if(Map[i][1][0]==Q){
-			H.push(Map[i][0])
-		}
-	}
-	return H
-}
-
-// Get Q Which Dependent to H
-function getQD(H){
-	Q = []
-	for(i=1;i<=8;i+=1){
-		if(Map[i][0]==H){
-			Q = Map[i][1]
-		}
-	}
-	return Q
-}
-
-// Remove Subarray in array
-function rmArr(base, sub){
-	for(i=0;i<sub.length;i+=1){
-		m = base.indexOf(sub[i])
-		if (m > -1) {
-    		base.splice(m, 1)
-		}
-	}
-	return base
-}
-
 // Intersection between 2 array
 function isect(alpha, beta) {
-    var dum = {};
-    var res = [];
-    for (var i = 0; i < beta.length; i+=1) {
-        dum[beta[i]] = true;
-    }
-    for (var j = 0; j < alpha.length; j+=1) {
-        if (dum[alpha[j]]) 
-            res.push(alpha[j]);
-    }
-    return res;
+	var dum = {};
+	var res = [];
+	for (var i = 0; i < beta.length; i+=1) {
+		dum[beta[i]] = true;
+	}
+	for (var j = 0; j < alpha.length; j+=1) {
+		if (dum[alpha[j]])
+		res.push(alpha[j]);
+	}
+	return res;
 }
