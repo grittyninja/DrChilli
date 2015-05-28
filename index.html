@@ -31,7 +31,7 @@
               <br />
                <p>Maecenas auctor tortor mauris, a suscipit leo maximus quis. Phasellus luctus consectetur porta. Fusce gravida viverra odio vel accumsan. Sed aliquam in risus at malesuada. Nullam turpis turpis, dignissim sit amet orci vitae, venenatis ultrices magna. Etiam tincidunt erat in ipsum bibendum imperdiet. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
              
-              <ons-button onclick="myNavigator.pushPage('PQ1', { animation : 'slide' } )">
+              <ons-button onclick="myNavigator.pushPage('question', { animation : 'slide' } )">
                 Mulai Diagnosa
               </ons-button>
             </div>
@@ -44,14 +44,14 @@
 
 
     <!-- QUESTION 1 -->
-    <ons-template id="PQ1">
+    <ons-template id="question">
       <ons-page>
         <ons-toolbar>
-         
+          <div class="left"><ons-back-button>Back</ons-back-button></div>
           <div class="center"><b>Dr Chili</b></div>
         </ons-toolbar>
     
-        <div style="text-align: center">
+        <div style="text-align: center" id="PQ1">
           <br />
           
           <img src="lib/img/gejala/2.jpg" />
@@ -65,8 +65,13 @@
             Tidak
           </ons-button>
         </div>
+        
+        
+        
+        
+        
       </ons-page>
- 
+    </ons-template>
     
     <!-- END OF QUESTION -->
 
